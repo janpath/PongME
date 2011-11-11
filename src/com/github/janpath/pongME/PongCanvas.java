@@ -11,7 +11,7 @@ import javax.microedition.midlet.MIDlet;
  */
 public class PongCanvas extends GameCanvas implements Runnable {
 
-	private boolean menuFinished = false;
+	private boolean menuFinished = true;
 
 	public PongCanvas(MIDlet aMIDlet) {
 		super(true);
@@ -19,6 +19,7 @@ public class PongCanvas extends GameCanvas implements Runnable {
 	}
 
 	private void init() {
+                setFullScreenMode(true);
 		Thread runner = new Thread(this);
 		runner.start();
 	}

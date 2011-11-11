@@ -16,7 +16,7 @@ public class PongME extends MIDlet {
 
 	public void startApp() {
 		if (canvas == null) {
-			canvas = new PongCanvas(this);
+			canvas = new Court(this);
 		}
 		Display display = Display.getDisplay(this);
 		display.setCurrent(canvas);
