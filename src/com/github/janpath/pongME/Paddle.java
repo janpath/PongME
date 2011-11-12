@@ -15,7 +15,6 @@ public class Paddle {
     protected int width;
     protected int height;
     
-    
     public Paddle(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
