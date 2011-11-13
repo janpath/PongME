@@ -28,6 +28,7 @@ public class Computer extends Player implements Runnable {
 
     public void run() {
         int dir = 1;
+        
         while(true) {
             x = court.ball.getX() - (width / 2) + court.ball.radius;
             
