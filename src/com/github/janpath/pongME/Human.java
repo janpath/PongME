@@ -22,10 +22,10 @@ public class Human extends Player implements Runnable {
 			int keyState = court.getKeyStates();
 
 			if ((keyState & court.LEFT_PRESSED) != 0 && x > -(width / 2)) {
-				--x;
+				x -= 3;
 			}
 			if ((keyState & court.RIGHT_PRESSED) != 0 && x < court.getWidth() - (width / 2)) {
-				++x;
+				x += 3;
 			}
 			try {
 				Thread.sleep(10);
