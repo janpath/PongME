@@ -67,7 +67,7 @@ public class Ball implements Runnable {
         int speedLoop = 0;
         
         while (true) {
-            if(speedLoop == 100) {
+            if(speedLoop == 150) {
                 speed -= 1;
                 speedLoop = 0;
             }
@@ -85,7 +85,7 @@ public class Ball implements Runnable {
                     (x >= court.player1.x) &&
                         (x <= court.player1.x + court.player1.width)) {
                             PongSound.playSound("pongPaddle.wav");
-                            speed = 45;
+                            speed = 48;
                             dirX *= -1;
                             dirY *= -1;
             }
@@ -94,7 +94,7 @@ public class Ball implements Runnable {
                     (x >= court.player2.x) &&
                         (x <= court.player2.x + court.player2.width)) {
                             PongSound.playSound("pongPaddle.wav");
-                            speed = 45;
+                            speed = 48;
                             dirX *= -1;
                             dirY *= -1;
             }

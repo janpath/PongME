@@ -16,7 +16,7 @@ public class Court extends PongCanvas implements Runnable {
     public Ball ball;
     public Player player1;
     public Player player2;
-    public int speed = 40;
+    public int speed = 45;
     public Graphics g;
     private Thread thread;
     private int lastWidth, lastHeight;
