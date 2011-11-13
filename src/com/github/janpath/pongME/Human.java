@@ -7,12 +7,12 @@ package com.github.janpath.pongME;
  *
  * @author Max
  */
-public class Human extends Player  implements Runnable {
-    public Human(int x, int y, int width, int height) {
-        super(x, y, width, height);
-    }
+public class Human extends Player implements Runnable {
 
-    public void run() {
+	public Human(int x, int y, int width, int height) {
+		super(x, y, width, height);
+	}
 
-    }
+	public void run() {
+	}
 }
