@@ -1,7 +1,7 @@
 /*
- * To change this template, choose Tools | Templates and open the template in the editor.
+ * This is the main class
  */
-package com.github.janpath.PongME;
+package com.github.janpath.pongME;
 
 import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
@@ -10,13 +10,13 @@ import javax.microedition.lcdui.*;
  * @author Max
  */
 public class PongME extends MIDlet {
-
 	public Display display;
-	public PongCanvas canvas = null;
+	public Court canvas;
 
 	public void startApp() {
 		if (canvas == null) {
-			canvas = new PongCanvas(this);
+			canvas = new Court(this);
+                        canvas.start();
 		}
 		Display display = Display.getDisplay(this);
 		display.setCurrent(canvas);
