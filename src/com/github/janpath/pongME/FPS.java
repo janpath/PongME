@@ -24,16 +24,16 @@ import java.lang.Math;
  */
 public class FPS {
 
-    /*
-     * The millisecond timestamp of the current render frame if used.
-     */
-    private static long frameTime;
+	/*
+	 * The millisecond timestamp of the current render frame if used.
+	 */
+	private static long frameTime;
 
-    private FPS() {
-        // singleton implementation
-    }
+	private FPS() {
+		// singleton implementation
+	}
 
-    /**
+	/**
      * Returns the best delay given the specified FPS.
      * The delay is used in application loops and is typically provided to the
      * Thread.sleep() method.
@@ -61,101 +61,100 @@ public class FPS {
      * @return A delay (in milliseconds) within 0.5ms accuracy.
      * @throws IllegalArgumentException if fps does not fall within 1-60.
      */
-    public static int getDelayFromFPS(int fps) {
+	public static int getDelayFromFPS(int fps) {
 
-        if (fps < 1 || fps > 60) {
-            // invalid fps
-            throw new IllegalArgumentException("fps must range from 1 to 60.");
-        }
+		if (fps < 1 || fps > 60) {
+			// invalid fps
+			throw new IllegalArgumentException("fps must range from 1 to 60.");
+		}
 
-        // determine the delay
-        int delay = 1000 / fps;
+		// determine the delay
+		int delay = 1000 / fps;
 
-        // determine the duration of a cycle if the above delay were applied
-        int cycleDuration = delay * fps;
+		// determine the duration of a cycle if the above delay were applied
+		int cycleDuration = delay * fps;
 
-        if (cycleDuration == 1000) {
-            /*
-             * Found the perfect delay! Return it now.
-             */
-            return delay;
-        }
+		if (cycleDuration == 1000) {
+			/*
+			 * Found the perfect delay! Return it now.
+			 */
+			return delay;
+		}
 
-        /*
-         * The calculated delay, if applied, will not result in the desired FPS.
-         * Find the delay which will produce the closest FPS cycle from the
-         * following choices:
-         *
-         * 1. the calculated delay 
-         * 2. the calculated delay - 1ms 
-         * 3. the calculated delay + 1ms
-         */
-        int delayMinusOne = delay - 1;
-        int cycleDuration2 = delayMinusOne * fps;
+		/*
+		 * The calculated delay, if applied, will not result in the desired FPS.
+		 * Find the delay which will produce the closest FPS cycle from the
+		 * following choices:
+		 *
+		 * 1. the calculated delay 2. the calculated delay - 1ms 3. the
+		 * calculated delay + 1ms
+		 */
+		int delayMinusOne = delay - 1;
+		int cycleDuration2 = delayMinusOne * fps;
 
-        int delayPlusOne = delay + 1;
-        int cycleDuration3 = delayPlusOne * fps;
+		int delayPlusOne = delay + 1;
+		int cycleDuration3 = delayPlusOne * fps;
 
-        int diff1, diff2, diff3;
+		int diff1, diff2, diff3;
 
-        diff1 = Math.max(cycleDuration, 1000) - Math.min(cycleDuration, 1000);
-        diff2 = Math.max(cycleDuration2, 1000) - Math.min(cycleDuration2, 1000);
-        diff3 = Math.max(cycleDuration3, 1000) - Math.min(cycleDuration3, 1000);
+		diff1 = Math.max(cycleDuration, 1000) - Math.min(cycleDuration, 1000);
+		diff2 = Math.max(cycleDuration2, 1000) - Math.min(cycleDuration2, 1000);
+		diff3 = Math.max(cycleDuration3, 1000) - Math.min(cycleDuration3, 1000);
 
-        if (diff1 < diff2) {
-            return (diff1 < diff3 ? delay : delayPlusOne);
-        }
+		if (diff1 < diff2) {
+			return (diff1 < diff3 ? delay : delayPlusOne);
+		}
 
-        return (diff2 < diff3 ? delayMinusOne : delayPlusOne);
-    }
+		return (diff2 < diff3 ? delayMinusOne : delayPlusOne);
+	}
 
-    /**
+	/**
      * Enforces a cycle delay on behalf of the application while using
      * an internally managed frame time.
      *
      * @param delay The delay to apply to this cycle.
      */
-    public static void enforceCycleDelay(int delay) {
-        enforceCycleDelay(frameTime, delay);
-    }
+	public static void enforceCycleDelay(int delay) {
+		enforceCycleDelay(frameTime, delay);
+	}
 
-    /**
+	/**
      * Enforces a cycle delay on behalf of the application.
      *
      * @param frameTime The millisecond timestamp of the current frame's
      * 			start time.
      * @param delay The delay to apply to this cycle.
      */
-    public static void enforceCycleDelay(long frameTime, int delay) {
+	public static void enforceCycleDelay(long frameTime, int delay) {
 
-        long sleepTime = delay - (System.currentTimeMillis() - frameTime);
+		long sleepTime = delay - (System.currentTimeMillis() - frameTime);
 
-        if (sleepTime > 0) {
+		if (sleepTime > 0) {
 
-            try {
-                Thread.sleep(sleepTime);
-            } catch (InterruptedException ie) {
-                /*
-                 * There is no appropriate course of action to recover from an
-                 * InterruptedException and therefore only the fact that it
-                 * occurs is output to the stack trace.
-                 */
-                ie.printStackTrace();
-            }
-        }
+			try {
+				Thread.sleep(sleepTime);
+			} catch (InterruptedException ie) {
+				/*
+				 * There is no appropriate course of action to recover from an
+				 * InterruptedException and therefore only the fact that it
+				 * occurs is output to the stack trace.
+				 */
+				ie.printStackTrace();
+			}
+		}
 
-        // Set the current frame-time.
-        FPS.frameTime = System.currentTimeMillis();
-    }
+		// Set the current frame-time.
+		FPS.frameTime = System.currentTimeMillis();
+	}
 
-    /**
+	/**
      * Returns the interally managed frame-time.
      * The value may or may not be set depending on the previous usage of
      * this class.
      *
      * @return The internal frame-time.
      */
-    public static long getFrameTime() {
-        return frameTime;
-    }
+	public static long getFrameTime() {
+		return frameTime;
+	}
 }
