@@ -12,7 +12,6 @@ import javax.microedition.midlet.MIDlet;
 public class PongCanvas extends GameCanvas implements Runnable {
 
     private boolean menuFinished = true;
-    private int height;
 
     public PongCanvas(MIDlet aMIDlet) {
         super(true);
@@ -24,7 +23,7 @@ public class PongCanvas extends GameCanvas implements Runnable {
         Thread thread = new Thread(this);
         thread.start();
     }
-
+    
     public void updateScreen(Graphics g) {
         g.setColor(0x000000);
         g.fillRect(0, 0, getWidth(), getHeight());
