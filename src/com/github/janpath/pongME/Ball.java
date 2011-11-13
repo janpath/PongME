@@ -86,7 +86,6 @@ public class Ball implements Runnable {
 					&& (x <= court.player1.x + court.player1.width)) {
 				PongSound.playSound("pongPaddle.wav");
 				speed = 48;
-				dirX *= -1;
 				dirY *= -1;
 			}
 
@@ -95,7 +94,6 @@ public class Ball implements Runnable {
 					&& (x <= court.player2.x + court.player2.width)) {
 				PongSound.playSound("pongPaddle.wav");
 				speed = 48;
-				dirX *= -1;
 				dirY *= -1;
 			}
 
