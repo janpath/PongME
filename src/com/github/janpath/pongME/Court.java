@@ -31,7 +31,7 @@ public class Court extends PongCanvas implements Runnable {
 		lastHeight = getHeight();
 
 		ball = new Ball((getWidth() / 2) - 3, (getHeight() / 2) - 3, 6, this);
-		player1 = new Computer((getWidth() / 2) - (paddleWidth / 2), getHeight() - 11, paddleWidth, 6, this);
+		player1 = new Human((getWidth() / 2) - (paddleWidth / 2), getHeight() - 11, paddleWidth, 6, this);
 		player2 = new Computer((getWidth() / 2) - (paddleWidth / 2), 5, paddleWidth, 6, this);
 
 		font = Font.getFont(Font.FACE_MONOSPACE, Font.STYLE_PLAIN, Font.SIZE_SMALL);

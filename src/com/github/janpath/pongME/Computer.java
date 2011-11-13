@@ -22,9 +22,7 @@ public class Computer extends Player implements Runnable {
 		this.court = court;
 		this.courtWidth = court.getWidth();
 		this.courtHeight = court.getHeight();
-
-		thread = new Thread(this);
-		thread.start();
+		init();
 	}
 
 	public void run() {
